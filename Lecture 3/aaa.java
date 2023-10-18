@@ -6,9 +6,11 @@ public class aaa {
 public static void main(String[] args)
 {
 	MyNumber a = new MyNumber();
-	System.out.println(a.getNum());
 	a.setNum(10);
-	System.out.println(a.getNum());
-	System.out.println(a.num2);
+	a.description();
+	System.out.println(a.average());
+	
+	MyNumber b = new MyNumber(10,20);
+	b.description();
 }
 }
