@@ -1,0 +1,99 @@
+package mypack;
+import java.util.Scanner;
+import java.lang.Math;
+
+class BasketballPlayer 
+{
+		   private String name;
+		   private int points;
+		   String team;
+
+	public BasketballPlayer(String name, String team) {
+	      this.name = name;
+	      this.team = team;
+	      this.points = (int) (Math.random()*100) % 50;
+	   }
+
+	public String getName() {
+	      return name;
+	   }
+
+	public int getPoints() {
+	      return points;
+	   }
+
+	public void setName(String name) {
+	      this.name = name;
+	   }
+
+	public void setPoints(int points) {
+	      this.points = points;
+	   }
+
+	public static BasketballPlayer MVP(BasketballPlayer[] players) {
+	      BasketballPlayer mvp = players[0];
+
+	      for (int i = 1; i < players.length; i++) {
+	         if (players[i].getPoints() > mvp.getPoints()) {
+	            mvp = players[i];
+	         }
+	      }
+
+	      return mvp;
+	   }
+
+	   
+	public String toString() {
+	      return name + " " + points + " points";
+	   }
+}
+
+	public class Exercise2 {
+	   public static void main(String[] args) {
+	      String team1 = "Miami Heat";
+	      String team2 = "L.A. Lakers";
+
+	      BasketballPlayer[] players1 = new BasketballPlayer[5];
+	      BasketballPlayer[] players2 = new BasketballPlayer[5];
+
+	      for (int i = 0; i < 5; i++) {
+	         players1[i] = new BasketballPlayer("Player_" + i, team1);
+	         players2[i] = new BasketballPlayer("Player_" + i, team2);
+	      }
+
+	      System.out.println(team1);
+	      for (BasketballPlayer player : players1) {
+	         System.out.println(player);
+	      }
+
+	      System.out.println(team2);
+	      for (BasketballPlayer player : players2) {
+	         System.out.println(player);
+	      }
+
+	      int score1 = 0;
+	      int score2 = 0;
+
+	      for (BasketballPlayer player : players1) {
+	         score1 += player.getPoints();
+	      }
+
+	      for (BasketballPlayer player : players2) {
+	         score2 += player.getPoints();
+	      }
+
+	      System.out.println(team1 + ": " + team2 + " = " + score1 + " : " + score2 + ".");
+
+	      String winner = (score1 > score2) ? team1 : team2;
+	      System.out.println("The winner is " + winner);
+
+	      BasketballPlayer mvp = BasketballPlayer.MVP(players1);
+
+	      if (BasketballPlayer.MVP(players2).getPoints() > mvp.getPoints()) {
+	         mvp = BasketballPlayer.MVP(players2);
+	      }
+
+	      System.out.println("MVP is " + mvp.getName() + " from " + mvp.team + " with " + mvp.getPoints() + " points.");
+	   }
+	}
+
